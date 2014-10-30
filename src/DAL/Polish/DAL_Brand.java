@@ -59,7 +59,7 @@ public class DAL_Brand extends DAL_Generic<Brand>{
 		}		
 		
 		try {
-			String query = "select b from Brand b where b.name like :name";
+			String query = "select b from Brand b where b.name like :name order by b.name";
 			Query q = getEntityManager().createQuery(query, Brand.class);
 			q.setParameter("name", "%" + name + "%");		
 			

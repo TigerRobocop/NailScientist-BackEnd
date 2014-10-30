@@ -51,7 +51,7 @@ public class DAL_Finish extends DAL_Generic<Finish>{
 		}		
 		
 		try {
-			String query = "select f from Finish f where f.name like :name";
+			String query = "select f from Finish f where f.name like :name order by f.name";
 			Query q = getEntityManager().createQuery(query, Finish.class);
 			q.setParameter("name", "%" + name + "%");		
 			

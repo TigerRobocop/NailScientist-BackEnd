@@ -7,6 +7,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import basicas.person.Employee;
+import basicas.polish.Brand;
 import DAL.DAL_Generic;
 
 public class DAL_Employee extends DAL_Generic<Employee>{
@@ -39,6 +40,26 @@ public class DAL_Employee extends DAL_Generic<Employee>{
 			System.out.println(e.getMessage());
 		}		
 		return  retorno;
+	}
+	
+	public Employee isLoginValid(Employee e){
+		Employee retorno = null;
+		
+		try {
+			String query = "select e from Employee e where e.login = :login and e.password = :password";
+			Query q = getEntityManager().createQuery(query, Employee.class);
+			q.setParameter("login", e.getLogin());	
+			q.setParameter("password", e.getPassword());
+			
+			retorno = (Employee)q.getSingleResult();
+				
+			
+		} catch (PersistenceException ex) {
+			System.out.println(ex.getMessage());
+		}
+		
+		
+		return retorno;
 	}
 
 }

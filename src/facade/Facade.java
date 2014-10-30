@@ -2,6 +2,7 @@ package facade;
 
 import java.util.List;
 
+import BLL.Person.BLL_Employee;
 import DAL.DAL_Factory;
 import DAL.Person.DAL_Employee;
 import DAL.Polish.DAL_Brand;
@@ -113,7 +114,7 @@ public class Facade {
 		dao.delete(obj);
 	}
 	
-	// ############### POLISH ################
+	// ############### EMPLOYEE ################
 		public void insert(Employee e) {
 			DAL_Employee dao = DAL_Factory.getDAL_Employee();
 			dao.insert(e);
@@ -138,4 +139,10 @@ public class Facade {
 			DAL_Employee dao = DAL_Factory.getDAL_Employee();
 			dao.delete(obj);
 		}
+		
+		public Employee isLoginValid(Employee e) throws Exception{
+			BLL_Employee bll = new BLL_Employee();
+			return bll.isLoginValid(e);
+		}
+		
 }

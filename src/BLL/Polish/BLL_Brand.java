@@ -13,7 +13,7 @@ public class BLL_Brand {
 			throw new Exception("Informe o nome da MARCA");
 		}
 		Brand teste = dao.findByName(b.getName());
-		if (teste != null && teste.getId() != b.getId() && teste.getName() == b.getName()) {
+		if (teste != null) {
 			throw new Exception("MARCA já existe no sistema");
 		}
 		dao.insert(b);
@@ -25,7 +25,7 @@ public class BLL_Brand {
 			throw new Exception("Informe o nome da MARCA");
 		}
 		Brand teste = dao.findByName(b.getName());
-		if (teste != null && teste.getId() != b.getId() && teste.getName() == b.getName()) {
+		if (teste != null && teste.getId() != b.getId()) {
 			throw new Exception("MARCA já existe no sistema");
 		}
 		return dao.update(b);

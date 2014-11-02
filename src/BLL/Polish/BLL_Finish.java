@@ -12,7 +12,7 @@ public class BLL_Finish {
 		}
 		
 		Finish teste = dao.findByName(f.getName());
-		if (teste != null && teste.getId() != f.getId() && teste.getName() == f.getName()) {
+		if (teste != null) {
 			throw new Exception("ACABAMENTO já existe no sistema");
 		}
 		dao.insert(f);
@@ -25,7 +25,7 @@ public class BLL_Finish {
 		}
 		
 		Finish teste = dao.findByName(f.getName());
-		if (teste != null && teste.getId() != f.getId() && teste.getName() == f.getName()) {
+		if (teste != null && teste.getId() != f.getId()) {
 			throw new Exception("ACABAMENTO já existe no sistema");
 		}
 		

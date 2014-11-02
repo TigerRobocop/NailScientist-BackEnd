@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import basicas.person.Employee;
 import basicas.polish.Brand;
+import basicas.polish.Polish;
 import DAL.DAL_Generic;
 
 public class DAL_Employee extends DAL_Generic<Employee>{
@@ -59,6 +60,30 @@ public class DAL_Employee extends DAL_Generic<Employee>{
 		}
 		
 		
+		return retorno;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Employee> findByFilters(Employee e){
+		List<Employee> retorno = null;
+		String name = "", color = "", brand = "", finish = "";
+		if (e.getName() != null) {
+			name = e.getName();
+		}
+		
+		try {
+			String query = "select e from Employee e where e.name like :name";
+			Query q = getEntityManager().createQuery(query, Employee.class);
+			q.setParameter("name", "%" + name + "%");
+			/*q.setParameter("color", "%"+ color +"%");
+			q.setParameter("brand", "%"+ brand +"%");
+			q.setParameter("finish", "%"+ finish +"%");
+			*/
+			retorno = q.getResultList();
+			
+		} catch (PersistenceException ex) {
+			System.out.println(ex.getMessage());
+		}
 		return retorno;
 	}
 

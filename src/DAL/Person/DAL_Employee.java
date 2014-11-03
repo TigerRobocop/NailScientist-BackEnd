@@ -63,6 +63,19 @@ public class DAL_Employee extends DAL_Generic<Employee>{
 		return retorno;
 	}
 	
+	public Employee findByLogin(String login){
+		Employee retorno = null;
+		try {
+			String query = "select e from Employee e where e.login = :login";
+			Query q = getEntityManager().createQuery(query, Employee.class);
+			q.setParameter("login", login);	
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return retorno;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Employee> findByFilters(Employee e){
 		List<Employee> retorno = null;

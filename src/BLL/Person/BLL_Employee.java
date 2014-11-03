@@ -38,6 +38,12 @@ public class BLL_Employee {
 		if (e.getLogin() == null) {
 			throw new Exception("LOGIN nao pode estar nulo");
 		}
+		
+		Employee teste = dao.findByLogin(e.getLogin());
+		if (teste != null) {
+			throw new Exception("LOGIN já existe no sistema");
+		}
+		
 		if (e.getLogin().trim().equals("")){
 			throw new Exception("Informe o LOGIN");
 		}
